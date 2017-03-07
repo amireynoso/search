@@ -1,5 +1,5 @@
 module.exports = {
     routes: require('./routes'),
-    items: require('./items'),
+    search: require('./search'),
     item: require('./item'),
 };

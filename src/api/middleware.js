@@ -9,10 +9,9 @@ module.exports = class Middleware {
     }
 
     static search (req, res, next) {
-        console.log('middleware 1');
         request(`${config.url}/sites/MLA/search?q=${req.params.query}&limit=${config.limit}&offset=1`)
             .then((items) => {
-                res.data = Object.assign(res.data, controllers.items.parse(items));
+                res.data = Object.assign(res.data, controllers.search.parse(items));
                 next();
             })
             .catch(next);

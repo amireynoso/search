@@ -1,4 +1,4 @@
-module.exports = class ItemsController {
+module.exports = class SearchController {
     static parse (response) {
         const parsedResponse = JSON.parse(response);
         const results = parsedResponse.results;
