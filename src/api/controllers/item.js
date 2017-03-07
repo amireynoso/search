@@ -1,24 +1,38 @@
-const config = require('../config/config');
+const helpers = require('./helpers');
 
 module.exports = class ItemController {
     static parse (response) {
-        const parsedResponse = JSON.parse(response);
+        const parsedItem = JSON.parse(response[0]);
+        const parsedDescription = JSON.parse(response[1]);
 
-         /*“item”: {
-            "id": String,
-                "title": String,
-                "price": {
-                "currency": String,
-                    "amount": Number,
-                    "decimals": Number,
+        return {
+            item: Object.assign({},
+                this.modelItem(parsedItem),
+                this.modelDescription(parsedDescription))
+        };
+    }
+
+    static modelItem(item) {
+        return {
+            id: item.id,
+            title: item.title,
+            price: {
+                currency: item.currency_id,
+                amount: item.price,
+                decimals: helpers.getDecimals(item.price)
             },
-        “picture”: String,
-                "condition": String,
-                "free_shipping": Boolean,
-                "sold_quantity", Number
-            "description": String
-        }*/
+            picture: item.pictures[0].secure_url,
+            condition: item.condition,
+            free_shipping: item.shipping.free_shipping,
+            sold_quantity: item.sold_quantity,
+        };
+    }
 
-        return parsedResponse;
+    static modelDescription(description) {
+        const descriptionText = description.text.trim() !== ''
+                              ? description.text : description.plain_text;
+        return {
+            description: descriptionText,
+        };
     }
 };

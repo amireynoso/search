@@ -5,4 +5,5 @@ module.exports = {
         name: 'Ami',
         lastname: 'Reynoso',
     },
+    separator: '.'
 };

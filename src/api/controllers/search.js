@@ -1,3 +1,5 @@
+const helpers = require('./helpers');
+
 module.exports = class SearchController {
     static parse (response) {
         const parsedResponse = JSON.parse(response);
@@ -32,8 +34,9 @@ module.exports = class SearchController {
             price: {
                 currency: item.currency_id,
                 amount: item.price,
+                decimals: helpers.getDecimals(item.price)
             },
-            picture: item.thumbnail,
+            picture: item.secure_thumbnail,
             condition: item.condition,
             free_shipping: item.shipping.free_shipping,
         };

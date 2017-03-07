@@ -1,6 +1,6 @@
 const request = require('request-promise-native');
-const config = require('./config/config');
-const controllers = require('./controllers');
+const config = require('./../config/config');
+const controllers = require('./../controllers');
 
 module.exports = class Middleware {
     static logger (req, res, next) {
@@ -18,14 +18,13 @@ module.exports = class Middleware {
     }
 
     static item (req, res, next) {
-        request(`${config.url}/items/${req.params.id}`)
-            .then((item) => {
-                res.data = Object.assign(res.data, {
-                    item: controllers.item.parse(item),
-                });
-                next();
-            })
-            .catch(next);
+        Promise.all([
+            request(`${config.url}/items/${req.params.id}`),
+            request(`${config.url}/items/${req.params.id}/description`)
+        ]).then((data) => {
+            res.data = Object.assign(res.data, controllers.item.parse(data));
+            next();
+        }).catch(next);
     }
 
     static author (req, res, next) {
