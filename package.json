@@ -1,0 +1,28 @@
+{
+  "name": "search",
+  "version": "1.0.0",
+  "description": "Practice app",
+  "main": "index.js",
+  "scripts": {
+    "api": "nodemon ./src/api/api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amireynoso/search.git"
+  },
+  "author": "Ami Reynoso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amireynoso/search/issues"
+  },
+  "homepage": "https://github.com/amireynoso/search#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "request": "^2.80.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
