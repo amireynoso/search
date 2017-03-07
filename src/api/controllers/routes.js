@@ -1,15 +1,9 @@
-const request = require('request-promise-native');
-const config = require('./../config');
-const itemsController = require('./items');
-
-class RoutesController {
+module.exports = class RoutesController {
     static search (req, res) {
-        request(`${config.url}/sites/MLA/search?q=${req.params.query}&limit=${config.limit}&offset=1`)
-        .then((items) => {
-            const body = itemsController.parse(items);
-            res.status(200).json(body);
-        });
+        res.status(200).json(res.data);
     }
-}
 
-module.exports = RoutesController;
+    static item (req, res) {
+        res.status(200).json(res.data);
+    }
+};

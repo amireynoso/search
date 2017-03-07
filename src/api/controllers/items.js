@@ -1,19 +1,12 @@
-const config = require('../config');
-
-class ItemsController {
+module.exports = class ItemsController {
     static parse (response) {
         const parsedResponse = JSON.parse(response);
         const results = parsedResponse.results;
 
         return {
-            author: this.modelAuthor(),
             categories: this.modelCategories(results),
             items: this.modelResults(results),
         };
-    }
-
-    static modelAuthor () {
-        return config.author;
     }
 
     static modelCategories (results) {
@@ -45,6 +38,4 @@ class ItemsController {
             free_shipping: item.shipping.free_shipping,
         };
     }
-}
-
-module.exports = ItemsController;
+};
