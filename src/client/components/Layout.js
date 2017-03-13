@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export default class Layout from React.Component {
+export default class Layout extends React.Component {
     render() {
         return (
             <h1>This is layout</h1>
